@@ -1,4 +1,5 @@
 Flask~=1.1.2
+Flask-WTF==0.14.3
 gunicorn==20.0.4
 Jinja2==2.10.3
 pdfkit==0.6.1
