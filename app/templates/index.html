@@ -5,71 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
     <title>Autodichiarazione automatica</title>
 </head>
 
 <body>
 <div class="jumbotron">
-  <h2 class="display-6">Autodichiarazione</h2>
-  <p class="lead">Genera il PDF dell'autodichiarazione compilando i seguenti campi.</p>
+    <h2 class="display-6">Autodichiarazione</h2>
+    <p class="lead">Genera il PDF dell'autodichiarazione compilando i seguenti campi.</p>
 </div>
 
-<div class="container-fluid">
-    <form id="contactForm" action="/pdf" method="post">
+<div class="container">
+    <form id="userForm" action="/pdf" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <div class="form-row">
-            <div class="col-md-4 mb-3">
-                <label for="validationDefault01">Nome</label>
-                <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+            <div class="col-md-4 mb-2">
+                <label for="validazioneNome">Nome e Cognome</label>
+                <input type="text" class="form-control" id="validazioneNome" name="name" placeholder="es. Mario Rossi" required>
             </div>
-            <div class="col-md-4 mb-3">
-                <label for="validationDefault02">Cognome</label>
-                <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="validationDefaultUsername">Username</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+            <div class="col-md-3 mb-2">
+                <div class="form-group">
+                    <label class="control-label">Data di nascita</label>
+                    <div class="input-group date" data-target-input="nearest">
+                        <label for="birthdate"></label>
+                        <input type="text" class="form-control datetimepicker-input" id="birthdate" name="bdate" data-target="#birthdate" placeholder="es. 1/12/1949">
+                        <div class="input-group-append" data-target="#birthdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
                     </div>
-                    <input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" placeholder="esempio validazione" required>
+                </div>
+            </div>
+            <div class="col-md-3 mb-2">
+                <label for="validazioneLuogoNascita">Luogo di nascita</label>
+                <input type="text" class="form-control" id="validazioneLuogoNascita" name="bplace" placeholder="es. Catania" required>
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="validazioneProvinciaNascita">Provincia</label>
+                <input type="text" class="form-control" id="validazioneProvinciaNascita" name="bprovince" placeholder="es. CT" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label for="validazioneResidenza">Residente a</label>
+                <input type="text" class="form-control" id="validazioneResidenza" name="rplace" placeholder="es. Catania" required>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label for="validazioneIndirizzoResidenza">Via</label>
+                <input type="text" class="form-control" id="validazioneIndirizzoResidenza" name="raddress" placeholder="es. Via Cavour, 8" required>
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="validazioneProvinciaResidenza">Provincia</label>
+                <input type="text" class="form-control" id="validazioneProvinciaResidenza" name="rprovince" placeholder="es. CT" required>
+            </div>
+
+            <div class="col-md-2 mb-2">
+                <label for="validazioneTel">Numero di telefono</label>
+                <input type="text" class="form-control" id="validazioneTel" name="phone_nr" placeholder="es. 01 123 456" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label for="validazioneDomicilio">Domiciliato a</label>
+                <input type="text" class="form-control" id="validazioneDomicilio" name="dplace" placeholder="es. Catania" required>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label for="validazioneViaResidenza">Via</label>
+                <input type="text" class="form-control" id="validazioneViaResidenza" name="daddress" placeholder="es. Via Cavour, 8" required>
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="validazioneProvinciaResidenza">Provincia</label>
+                <input type="text" class="form-control" id="validazioneProvinciaResidenza" name="dprovince" placeholder="es. CT" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-2">
+                <label for="validazioneTipoDocumento">Documento d'identificazione</label>
+                <select class="form-control" id="validazioneTipoDocumento" name="document_type">
+                    <option>Carta d'identità</option>
+                    <option>Patente di guida</option>
+                    <option>Passaporto</option>
+                </select>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label for="validazioneNrDoc">Numero documento</label>
+                <input type="text" class="form-control" id="validazioneNrDoc" name="document_nr" placeholder="es. AB012345" required>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label for="validazioneEnteRilascio">Rilasciato da</label>
+                <input type="text" class="form-control" id="validazioneEnteRilascio" name="doc_released_by" placeholder="es. Prefettura di Catania" required>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <div class="form-group">
+                    <label class="control-label">Data di rilascio</label>
+                    <div class="input-group date" data-target-input="nearest">
+                        <label for="id_release_date"></label>
+                        <input type="text" class="form-control datetimepicker-input" id="id_release_date" name="doc_release_date" data-target="#birthdate" placeholder="es. 1/1/2020" required>
+                        <div class="input-group-append" data-target="#id_release_date" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="form-row">
-            <div class="col-md-6 mb-3">
-                <label for="validationDefault03">City</label>
-                <input type="text" class="form-control" id="validationDefault03" required>
+            <div class="col-md-6 mb-2">
+                <label for="validazioneOrigineSpostamento">Indirizzo orgine spostamento</label>
+                <input type="text" class="form-control" id="validazioneOrigineSpostamento" name="out_origin" placeholder="es. Via Leopardi, 3" required>
             </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationDefault04">State</label>
-                <select class="custom-select" id="validationDefault04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
+            <div class="col-md-6 mb-2">
+                <label for="validazioneDestinazioneSpostamento">Indirizzo destinazione spostamento</label>
+                <input type="text" class="form-control" id="validazioneDestinazioneSpostamento" name="out_address" placeholder="es. Via Roma, 1" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-2">
+                <label for="validazioneRegioneOrigine">Regione di partenza</label>
+                <select class="form-control" id="validazioneRegioneOrigine" name="region_from" required>
+                    {% for region in regions %}
+                        <option>{{ region }}</option>
+                    {% endfor %}
                 </select>
             </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationDefault05">Zip</label>
-                <input type="text" class="form-control" id="validationDefault05" required>
+            <div class="col-md-3 mb-2">
+                <label for="validazioneRegioneDestinazione">Regione di destinazione</label>
+                <select class="form-control" id="validazioneRegioneDestinazione" name="region_to" required>
+                    {% for region in regions %}
+                        <option>{{ region }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <label for="tipoProvvedimento">Tipo di provvedimento</label>
+                <input type="text" class="form-control" id="tipoProvvedimento" name="provvedimento_type" placeholder="" required>
             </div>
         </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                <label class="form-check-label" for="invalidCheck2">
-                    Esempio checkbox
-                </label>
+
+        <div class="form-row">
+            <div class="col-md-12 mb-2">
+                <label for="validazioneMotivazioneSpostamento">Motivazione spostamento</label>
+                <input type="text" class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation" placeholder="es. andare a fare la spesa" required>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit"><i class="far fa-file-alt mr-2"></i>Genera PDF</button>
+
+        <button class="btn btn-primary" id="genPDFButton" type="submit"><i class="far fa-file-alt mr-2"></i>Genera PDF</button>
     </form>
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+<script src="../static/js/main.js"></script>
+<script>
+    $(function () {
+        $('#birthdate').datetimepicker({
+            format: 'L',
+            locale: 'it'
+        });
+
+        $('#id_release_date').datetimepicker({
+            format: 'L',
+            locale: 'it'
+        })
+    });
+</script>
 
 </body>
 </html>
