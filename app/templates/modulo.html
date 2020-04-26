@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<title></title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+ <br/>
+<style type="text/css">
+<!--
+	p {margin: 50; padding: 50;     word-wrap:break-word;
+
+    max-width: 200ch;}	.ft10{font-size:14px;font-family:Times;color:#000000;}
+	.ft11{font-size:16px;font-family:Times;color:#000000;}
+	.ft12{font-size:14px;font-family:Times;color:#000000;}
+	.ft13{font-size:16px;font-family:Times;color:#000000;}
+	.ft14{font-size:14px;font-family:Times;color:#000000;}
+	.ft15{font-size:14px;font-family:Times;color:#000000;}
+	.ft16{font-size:14px;line-height:23px;font-family:Times;color:#000000;}
+	.ft17{font-size:14px;line-height:24px;font-family:Times;color:#000000;}
+	.ft18{font-size:14px;line-height:25px;font-family:Times;color:#000000;}
+	.ft19{font-size:14px;line-height:29px;font-family:Times;color:#000000;}
+	.ft110{font-size:14px;line-height:22px;font-family:Times;color:#000000;}
+	.ft111{font-size:14px;line-height:25px;font-family:Times;color:#000000;}
+	.ft112{font-size:14px;line-height:1.7;font-family:Times;color:#000000;}
+	ul {
+	  	list-style: none;
+  		margin-left: 20;
+  		padding-left: 20;
+		line-height: 4;
+	}
+
+	li {
+  		padding-left: 1em;
+  		text-indent: -1em;
+		line-height:1.7;
+		font-size:14px
+	}
+
+	li:before {
+  		content: "➢";
+  		padding-right: 5px;
+		}
+		html,body{
+    height:297mm;
+    width:210mm;
+}
+-->
+-->
+</style>
+</head>
+<body>
+<div id="page1-div" style="position:relative;width:297mm;height:210mm;">
+<h3 style="text-align:center">AUTODICHIARAZIONE AI SENSI DEGLI ARTT. 46 E 47 D.P.R. N. 445/2000</h3>
+<br>
+<p class="ft112">
+Il sottoscritto {{name | default("_____________")}} </br>
+nato il {{bdate | default("_____________")}} a {{bplace |default("_____________")}} ({{bprovince |default("__")}}), </br>
+residente in {{rplace|default("____________")}} ({{rprovince|default("__")}}), via {{raddress|default("_____________")}} </br> 
+e domiciliato in {{dplace|default("_____________")}} ({{dprovince|default("__")}}), via {{daddress|default("___________________")}}, </br>
+identificato a mezzo {{document_type|default("_______________")}} nr {{document_nr|default("____________________")}}, </br>
+rilasciato da {{document_released_by|default("____________________")}} in data {{doc_released_date|default("____________")}}, </br>
+utenza telefonica {{phone_nr|default("____________________")}}, </br>
+consapevole delle conseguenze penali previste in caso di dichiarazioni mendaci a pubblico ufficiale <b>(art. 495 c.p.)</b></br>
+</p>
+
+<h4 style="text-align: center;">DICHIARA SOTTO LA PROPRIA RESPONSABILITÀ</h4>
+<ul>
+<li> <b> <ins>di non essere sottoposto alla misura della quarantena ovvero di </br>
+		non essere risultato positivo al COVID-19</b></ins> (<i>fatti salvi gli spostamenti disposti dalle Autorità sanitarie</i>)<b>;</b></li>
+<li> <b> che lo spostamento è iniziato da </b>{{out_origin}} <b> </br>
+		con destinazione </b>{{out_destination}}</li>
+<li> <b> <ins>di essere a conoscenza delle misure di contenimento del contagio vigenti alla data odierna</ins> ed adottate ai sensi </br>
+		degli artt. 1 e 2 del decreto legge 25 marzo 2020, n.19, <ins>concernenti le limitazioni alle possibilità di spostamento</ins> </br>
+		delle persone fisiche all'interno di tutto il territorio nazionale</b>;</li></p>
+<li> <b> <ins>di essere a conoscenza delle ulteriori limitazioni disposte con provvedimenti</ins> </br>
+		del Presidente delle Regione</b> {{region_from | default("______________")}} </br>
+	<b>e del Presidente della Regione </b> {{region_to | default("______________")}} </br>
+	<b>e che lo spostamento rientra in uno dei casi consentiti dai </br>
+		medesimi provvedimenti </b>{{provvedimento_type}} ;</li>
+<li> <b><ins>di essere a conoscenza delle sanzioni previste dall'art. 4 del decreto legge 25 marzo 2020, n. 19</ins></b>;</li>
+<li> <b>che lo spostamento è determinato da:</b></br>
+		{{out_motivation | default("situazione di necessità")}}</li>
+</ul>
+
+
+<!-- 
+<p style="position:absolute;top:745px;left:126px;white-space:nowrap" class="ft17"></p><b>- comprovate esigenze lavorative;<br/>- assoluta urgenza (per trasferimenti in comune diverso);<br/>- situazione di necessità (per spostamenti all’interno dello stesso comune o che rivestono carattere di </b></p>
+<p style="position:absolute;top:824px;left:136px;white-space:nowrap" class="ft17"><b>quotidianità o che, comunque, siano effettuati abitualmente in ragione della brevità delle distanze da <br/>percorrere);</b></p>
+<p style="position:absolute;top:873px;left:126px;white-space:nowrap" class="ft12"><b>- motivi di salute. </b></p>
+-->
+<h4 style="text-align: center;">A questo  riguardo,  dichiara che: </h4>
+<p class="ft112">
+{{declaration | default("nulla da dichiarare")}}</br>
+<!--
+<i><b>(lavoro presso …, devo effettuare una visita medica, urgente assistenza a congiunti o a persone con disabilità, o 
+	esecuzioni di interventi assistenziali in favore di persone in grave stato di necessità, obblighi di affidamento di minori, 
+	denunce di reati, rientro dall’estero, altri motivi particolari, etc….). </b></i>
+</p>
+-->
+<p style="position:absolute;top:1087px;left:85px;white-space:nowrap" class="ft111"><b>{{date_place_now}}<br/>Data, ora e luogo del controllo </b></p>
+<p style="position:absolute;top:1147px;left:134px;white-space:nowrap" class="ft10">Firma del dichiarante </p>
+<p style="position:absolute;top:1143px;left:612px;white-space:nowrap" class="ft10">L’Operatore di Polizia </p>
+</div>
+</body>
+</html>
