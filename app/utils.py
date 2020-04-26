@@ -36,6 +36,6 @@ def fields_to_pdf(
     template_relpath: path of modulo template relative to template_searchpath
 
     """
-    template = get_template(path=template_relpath, searchpath=SEARCH_PATH)
+    template = get_template(path=template_relpath, searchpath=template_searchpath)
     compiled = compile_template(template, **fields)
     html_to_pdf(compiled, out_path)
