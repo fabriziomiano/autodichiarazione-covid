@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>Autodichiarazione automatica</title>
 </head>
 
@@ -64,7 +64,7 @@
             </div>
 
             <div class="col-md-2 mb-2">
-                <label for="validazioneTel">Numero di telefono</label>
+                <label for="validazioneTel">Telefono</label>
                 <input type="text" class="form-control" id="validazioneTel" name="phone_nr" placeholder="es. 01 123 456" required>
             </div>
         </div>
@@ -86,7 +86,7 @@
 
         <div class="form-row">
             <div class="col-md-3 mb-2">
-                <label for="validazioneTipoDocumento">Documento d'identificazione</label>
+                <label for="validazioneTipoDocumento">Documento</label>
                 <select class="form-control" id="validazioneTipoDocumento" name="document_type">
                     <option>Carta d'identità</option>
                     <option>Patente di guida</option>
@@ -95,13 +95,13 @@
             </div>
 
             <div class="col-md-3 mb-2">
-                <label for="validazioneNrDoc">Numero documento</label>
+                <label for="validazioneNrDoc">Nr. documento</label>
                 <input type="text" class="form-control" id="validazioneNrDoc" name="document_nr" placeholder="es. AB012345" required>
             </div>
 
             <div class="col-md-3 mb-2">
                 <label for="validazioneEnteRilascio">Rilasciato da</label>
-                <input type="text" class="form-control" id="validazioneEnteRilascio" name="document_released_by" placeholder="es. Prefettura di Catania" required>
+                <input type="text" class="form-control" id="validazioneEnteRilascio" name="document_released_by" placeholder="es. Prefettura" required>
             </div>
 
             <div class="col-md-3 mb-2">
@@ -130,7 +130,7 @@
         </div>
 
         <div class="form-row">
-            <div class="col-md-3 mb-2">
+            <div class="col-md-4 mb-2">
                 <label for="validazioneRegioneOrigine">Regione di partenza</label>
                 <select class="form-control" id="validazioneRegioneOrigine" name="region_from" required>
                     {% for region in regions %}
@@ -138,7 +138,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-3 mb-2">
+            <div class="col-md-4 mb-2">
                 <label for="validazioneRegioneDestinazione">Regione di destinazione</label>
                 <select class="form-control" id="validazioneRegioneDestinazione" name="region_to" required>
                     {% for region in regions %}
@@ -147,7 +147,7 @@
                 </select>
             </div>
 
-            <div class="col-md-6 mb-2">
+            <div class="col-md-4 mb-2">
                 <label for="tipoProvvedimento">Tipo di provvedimento</label>
                 <input type="text" class="form-control" id="tipoProvvedimento" name="provvedimento_type" placeholder="">
             </div>
@@ -159,10 +159,7 @@
                 <select class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation_select" required>
                     <option>comprovate esigenze lavorative</option>
                     <option>assoluta urgenza (per trasferimenti in comune diverso)</option>
-                    <option>situazione di necessità (per spostamenti all’interno dello stesso comune o che rivestono carattere di
-                        quotidianità o che, comunque, siano effettuati abitualmente in ragione della brevità delle distanze da
-                        percorrere)
-                    </option>
+                    <option>situazione di necessità</option>
                     <option>motivi di salute</option>
                 </select>
             </div>
@@ -176,7 +173,7 @@
             <div class="col-md-12 mb-2">
                 <div class="form-group">
                     <label for="dichiarazione">A riguardo dichiara che</label>
-                    <textarea class="form-control" id="dichiarazione" name="declaration" rows="3"></textarea>
+                    <textarea class="form-control" id="dichiarazione" name="declaration" rows="3" required></textarea>
                 </div>
             </div>
         </div>
@@ -188,7 +185,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-<script src="../static/js/main.js"></script>
+{#<script src="../static/js/main.js"></script>#}
 <script>
     $(function () {
         $('#birthdate').datetimepicker({
