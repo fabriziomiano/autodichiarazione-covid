@@ -5,3 +5,4 @@ REGIONS = [
     'Puglia', 'Sardegna', 'Sicilia', 'Toscana', 'Umbria',
     "Valle d'Aosta", 'Veneto'
 ]
+TEMPLATE_PATH = "modulo.html"
