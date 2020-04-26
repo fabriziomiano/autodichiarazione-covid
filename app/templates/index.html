@@ -149,12 +149,24 @@
 
             <div class="col-md-6 mb-2">
                 <label for="tipoProvvedimento">Tipo di provvedimento</label>
-                <input type="text" class="form-control" id="tipoProvvedimento" name="provvedimento_type" placeholder="" required>
+                <input type="text" class="form-control" id="tipoProvvedimento" name="provvedimento_type" placeholder="">
             </div>
         </div>
 
         <div class="form-row">
-            <div class="col-md-12 mb-2">
+            <div class="col-md-6 mb-2">
+                <label for="validazioneMotivazioneSpostamento">Spostamento determinato da</label>
+                <select class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation_select" required>
+                    <option>comprovate esigenze lavorative</option>
+                    <option>assoluta urgenza (per trasferimenti in comune diverso)</option>
+                    <option>situazione di necessità (per spostamenti all’interno dello stesso comune o che rivestono carattere di
+                        quotidianità o che, comunque, siano effettuati abitualmente in ragione della brevità delle distanze da
+                        percorrere)
+                    </option>
+                    <option>motivi di salute</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-2">
                 <label for="validazioneMotivazioneSpostamento">Motivazione spostamento</label>
                 <input type="text" class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation" placeholder="es. andare a fare la spesa" required>
             </div>
