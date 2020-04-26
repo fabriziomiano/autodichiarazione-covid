@@ -6,3 +6,5 @@ REGIONS = [
     "Valle d'Aosta", 'Veneto'
 ]
 TEMPLATE_PATH = "modulo.html"
+# TEMPLATE_PATH = "modulo_bs.html"
+DEFAULT_FILENAME = "dichiarazione.pdf"
