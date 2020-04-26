@@ -154,25 +154,21 @@
         </div>
 
         <div class="form-row">
-            <div class="col-md-6 mb-2">
+            <div class="col-md-12 mb-2">
                 <label for="validazioneMotivazioneSpostamento">Spostamento determinato da</label>
-                <select class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation_select" required>
+                <select class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation" required>
                     <option>comprovate esigenze lavorative</option>
                     <option>assoluta urgenza (per trasferimenti in comune diverso)</option>
                     <option>situazione di necessità</option>
                     <option>motivi di salute</option>
                 </select>
             </div>
-            <div class="col-md-6 mb-2">
-                <label for="validazioneMotivazioneSpostamento">Motivazione spostamento</label>
-                <input type="text" class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation" placeholder="es. andare a fare la spesa" required>
-            </div>
         </div>
 
         <div class="form-row">
             <div class="col-md-12 mb-2">
                 <div class="form-group">
-                    <label for="dichiarazione">A riguardo dichiara che</label>
+                    <label for="dichiarazione">A riguardo dichiara che:</label>
                     <textarea class="form-control" id="dichiarazione" name="declaration" rows="3" required></textarea>
                 </div>
             </div>
@@ -185,14 +181,15 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-{#<script src="../static/js/main.js"></script>#}
 <script>
     $(function () {
         $('#birthdate').datetimepicker({
             format: 'L',
             locale: 'it'
         });
+    });
 
+    $(function () {
         $('#id_release_date').datetimepicker({
             format: 'L',
             locale: 'it'
