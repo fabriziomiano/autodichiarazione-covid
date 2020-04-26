@@ -1,5 +1,4 @@
 import uuid
-import os
 from flask import Blueprint, render_template, current_app, request
 from app.config import REGIONS
 from app.utils import fields_to_pdf
