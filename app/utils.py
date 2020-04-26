@@ -1,9 +1,10 @@
 import pdfkit
 import jinja2
 import os
+from flask import render_template
+from app.config import TEMPLATE_PATH
 
 SEARCH_PATH = "./"
-TEMPLATE_PATH = "templates/modulo.html"
 
 
 def get_template(path=TEMPLATE_PATH, searchpath="./"):
@@ -23,19 +24,12 @@ def html_to_pdf(path_or_string, pdf_path):
         pdfkit.from_string(path_or_string, pdf_path)
 
 
-def fields_to_pdf(
-        fields, out_path,
-        template_relpath=TEMPLATE_PATH,
-        template_searchpath=SEARCH_PATH):
+def fields_to_pdf(fields, out_path):
     """
-    Params
-    ------
-    fields (dict): fields to fill template with
-    out_path: pdf destination path
-    template_searchpath: search root folder of the filesystem
-    template_relpath: path of modulo template relative to template_searchpath
-
+    Write PDF file to out_path
+    :param fields: dict
+    :param out_path: str
+    :return: None
     """
-    template = get_template(path=template_relpath, searchpath=template_searchpath)
-    compiled = compile_template(template, **fields)
-    html_to_pdf(compiled, out_path)
+    compiled_template = render_template(TEMPLATE_PATH, **fields)
+    html_to_pdf(compiled_template, out_path)
