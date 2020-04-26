@@ -101,7 +101,7 @@
 
             <div class="col-md-3 mb-2">
                 <label for="validazioneEnteRilascio">Rilasciato da</label>
-                <input type="text" class="form-control" id="validazioneEnteRilascio" name="doc_released_by" placeholder="es. Prefettura di Catania" required>
+                <input type="text" class="form-control" id="validazioneEnteRilascio" name="document_released_by" placeholder="es. Prefettura di Catania" required>
             </div>
 
             <div class="col-md-3 mb-2">
@@ -109,7 +109,7 @@
                     <label class="control-label">Data di rilascio</label>
                     <div class="input-group date" data-target-input="nearest">
                         <label for="id_release_date"></label>
-                        <input type="text" class="form-control datetimepicker-input" id="id_release_date" name="doc_release_date" data-target="#birthdate" placeholder="es. 1/1/2020" required>
+                        <input type="text" class="form-control datetimepicker-input" id="id_release_date" name="doc_released_date" data-target="#birthdate" placeholder="es. 1/1/2020" required>
                         <div class="input-group-append" data-target="#id_release_date" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -125,7 +125,7 @@
             </div>
             <div class="col-md-6 mb-2">
                 <label for="validazioneDestinazioneSpostamento">Indirizzo destinazione spostamento</label>
-                <input type="text" class="form-control" id="validazioneDestinazioneSpostamento" name="out_address" placeholder="es. Via Roma, 1" required>
+                <input type="text" class="form-control" id="validazioneDestinazioneSpostamento" name="out_destination" placeholder="es. Via Roma, 1" required>
             </div>
         </div>
 
@@ -172,7 +172,17 @@
             </div>
         </div>
 
+        <div class="form-row">
+            <div class="col-md-12 mb-2">
+                <div class="form-group">
+                    <label for="dichiarazione">A riguardo dichiara che</label>
+                    <textarea class="form-control" id="dichiarazione" name="declaration" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
         <button class="btn btn-primary" id="genPDFButton" type="submit"><i class="far fa-file-alt mr-2"></i>Genera PDF</button>
+
     </form>
 
 </div>
