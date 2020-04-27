@@ -4,12 +4,13 @@
 
     <div class="jumbotron">
         <h2 class="display-6">Autodichiarazione COVID</h2>
-        <p class="lead">
-            Genera il PDF dell'autodichiarazione compilando i seguenti campi.<br>
-            Il template usato è il documento ufficiale fornito dal Ministero dell'Interno
-            (<a href="https://www.interno.gov.it/sites/default/files/allegati/nuovo_modello_autodichiarazione_26.03.2020_editabile.pdf" target="_blank">qui</a>)<br>
-            <b>DISCLAIMER:</b> Nessun dato viene salvato sui server.
+        <p>
+            <i class="fa fa-bullhorn mr-2"></i>Versione modulo:
+            <a href="https://www.interno.gov.it/sites/default/files/allegati/nuovo_modello_autodichiarazione_26.03.2020_editabile.pdf" target="_blank">26 Marzo 2020</a>
         </p>
+        <div class="alert alert-success" role="alert">
+            <strong>Attenzione:</strong> Non vengono raccolti cookies e nessun dato viene salvato sui server
+        </div>
     </div>
 
     <div class="container mb-4">
@@ -141,7 +142,7 @@
 
                 <div class="col-md-4 mb-2">
                     <label for="tipoProvvedimento">Tipo di provvedimento</label>
-                    <input type="text" class="form-control" id="tipoProvvedimento" name="provvedimento_type" placeholder="">
+                    <input type="text" class="form-control" id="tipoProvvedimento" name="provvedimento_type">
                 </div>
             </div>
 
@@ -170,7 +171,6 @@
 
         </form>
     </div>
-
 
 
 {% endblock %}
