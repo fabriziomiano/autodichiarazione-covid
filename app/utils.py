@@ -43,6 +43,7 @@ def html_to_pdf(path_or_string, pdf_path, options=None):
 def fields_to_pdf(fields, out_path, pdf_options=None):
     """
     Write PDF file to out_path
+    :param pdf_options: dict, optional
     :param fields: dict
     :param out_path: str
     :return: None
