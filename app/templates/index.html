@@ -15,14 +15,17 @@
 
     <div class="container mb-4">
         <form id="userForm" action="/renderform" method="post">
+
+            <h3>Dati Anagrafici</h3>
+
             <div class="form-row">
                 <div class="col-md-4 mb-2">
-                    <label for="validazioneNome">Nome e Cognome</label>
-                    <input type="text" class="form-control" id="validazioneNome" name="name" placeholder="es. Mario Rossi" required>
+                    <label for="validazioneNome">Il sottoscritto</label>
+                    <input type="text" class="form-control" id="validazioneNome" name="name" placeholder="es. Mario Rossi">
                 </div>
                 <div class="col-md-3 mb-2">
                     <div class="form-group">
-                        <label class="control-label">Data di nascita</label>
+                        <label class="control-label">Nato il</label>
                         <div class="input-group date" data-target-input="nearest">
                             <label for="birthdate"></label>
                             <input type="text" class="form-control datetimepicker-input" id="birthdate" name="bdate" data-target="#birthdate" placeholder="es. 1/12/1949">
@@ -33,53 +36,53 @@
                     </div>
                 </div>
                 <div class="col-md-3 mb-2">
-                    <label for="validazioneLuogoNascita">Luogo di nascita</label>
-                    <input type="text" class="form-control" id="validazioneLuogoNascita" name="bplace" placeholder="es. Catania" required>
+                    <label for="validazioneLuogoNascita">a</label>
+                    <input type="text" class="form-control" id="validazioneLuogoNascita" name="bplace" placeholder="es. Catania">
                 </div>
                 <div class="col-md-2 mb-2">
                     <label for="validazioneProvinciaNascita">Provincia</label>
-                    <input type="text" class="form-control" id="validazioneProvinciaNascita" name="bprovince" placeholder="es. CT" required>
+                    <input type="text" class="form-control" id="validazioneProvinciaNascita" name="bprovince" placeholder="es. CT">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-4 mb-2">
-                    <label for="validazioneResidenza">Residente a</label>
-                    <input type="text" class="form-control" id="validazioneResidenza" name="rplace" placeholder="es. Catania" required>
+                    <label for="validazioneResidenza">Residente in</label>
+                    <input type="text" class="form-control" id="validazioneResidenza" name="rplace" placeholder="es. Catania">
                 </div>
                 <div class="col-md-4 mb-2">
-                    <label for="validazioneIndirizzoResidenza">Via</label>
-                    <input type="text" class="form-control" id="validazioneIndirizzoResidenza" name="raddress" placeholder="es. Via Cavour, 8" required>
+                    <label for="validazioneIndirizzoResidenza">Indirizzo</label>
+                    <input type="text" class="form-control" id="validazioneIndirizzoResidenza" name="raddress" placeholder="es. Via Cavour, 8">
                 </div>
                 <div class="col-md-2 mb-2">
                     <label for="validazioneProvinciaResidenza">Provincia</label>
-                    <input type="text" class="form-control" id="validazioneProvinciaResidenza" name="rprovince" placeholder="es. CT" required>
+                    <input type="text" class="form-control" id="validazioneProvinciaResidenza" name="rprovince" placeholder="es. CT">
                 </div>
 
                 <div class="col-md-2 mb-2">
                     <label for="validazioneTel">Telefono</label>
-                    <input type="text" class="form-control" id="validazioneTel" name="phone_nr" placeholder="es. 01 123 456" required>
+                    <input type="text" class="form-control" id="validazioneTel" name="phone_nr" placeholder="es. 01 123 456">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-4 mb-2">
-                    <label for="validazioneDomicilio">Domiciliato a</label>
-                    <input type="text" class="form-control" id="validazioneDomicilio" name="dplace" placeholder="es. Catania" required>
+                    <label for="validazioneDomicilio">Domiciliato in</label>
+                    <input type="text" class="form-control" id="validazioneDomicilio" name="dplace" placeholder="es. Catania">
                 </div>
                 <div class="col-md-6 mb-2">
-                    <label for="validazioneViaResidenza">Via</label>
-                    <input type="text" class="form-control" id="validazioneViaResidenza" name="daddress" placeholder="es. Via Cavour, 8" required>
+                    <label for="validazioneViaResidenza">Indirizzo</label>
+                    <input type="text" class="form-control" id="validazioneViaResidenza" name="daddress" placeholder="es. Via Cavour, 8">
                 </div>
                 <div class="col-md-2 mb-2">
                     <label for="validazioneProvinciaResidenza">Provincia</label>
-                    <input type="text" class="form-control" id="validazioneProvinciaResidenza" name="dprovince" placeholder="es. CT" required>
+                    <input type="text" class="form-control" id="validazioneProvinciaResidenza" name="dprovince" placeholder="es. CT">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-3 mb-2">
-                    <label for="validazioneTipoDocumento">Documento</label>
+                    <label for="validazioneTipoDocumento">Idenfitificato a mezzo</label>
                     <select class="form-control" id="validazioneTipoDocumento" name="document_type">
                         <option>Carta d'identità</option>
                         <option>Patente di guida</option>
@@ -88,21 +91,21 @@
                 </div>
 
                 <div class="col-md-3 mb-2">
-                    <label for="validazioneNrDoc">Nr. documento</label>
-                    <input type="text" class="form-control" id="validazioneNrDoc" name="document_nr" placeholder="es. AB012345" required>
+                    <label for="validazioneNrDoc">nr.</label>
+                    <input type="text" class="form-control" id="validazioneNrDoc" name="document_nr" placeholder="es. AB012345">
                 </div>
 
                 <div class="col-md-3 mb-2">
                     <label for="validazioneEnteRilascio">Rilasciato da</label>
-                    <input type="text" class="form-control" id="validazioneEnteRilascio" name="document_released_by" placeholder="es. Prefettura" required>
+                    <input type="text" class="form-control" id="validazioneEnteRilascio" name="document_released_by" placeholder="es. Prefettura">
                 </div>
 
                 <div class="col-md-3 mb-2">
                     <div class="form-group">
-                        <label class="control-label">Data di rilascio</label>
+                        <label class="control-label">In data</label>
                         <div class="input-group date" data-target-input="nearest">
                             <label for="id_release_date"></label>
-                            <input type="text" class="form-control datetimepicker-input" id="id_release_date" name="doc_released_date" data-target="#birthdate" placeholder="es. 1/1/2020" required>
+                            <input type="text" class="form-control datetimepicker-input" id="id_release_date" name="doc_released_date" data-target="#birthdate" placeholder="es. 1/1/2020">
                             <div class="input-group-append" data-target="#id_release_date" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -111,21 +114,24 @@
                 </div>
             </div>
 
+            <hr>
+            <h3>Dettagli dichiarazione</h3>
+
             <div class="form-row">
                 <div class="col-md-6 mb-2">
-                    <label for="validazioneOrigineSpostamento">Indirizzo orgine spostamento</label>
-                    <input type="text" class="form-control" id="validazioneOrigineSpostamento" name="out_origin" placeholder="es. Via Leopardi, 3" required>
+                    <label for="validazioneOrigineSpostamento">Orgine spostamento</label>
+                    <input type="text" class="form-control" id="validazioneOrigineSpostamento" name="out_origin" placeholder="es. Via Leopardi, 3">
                 </div>
                 <div class="col-md-6 mb-2">
-                    <label for="validazioneDestinazioneSpostamento">Indirizzo destinazione spostamento</label>
-                    <input type="text" class="form-control" id="validazioneDestinazioneSpostamento" name="out_destination" placeholder="es. Via Roma, 1" required>
+                    <label for="validazioneDestinazioneSpostamento">Destinazione</label>
+                    <input type="text" class="form-control" id="validazioneDestinazioneSpostamento" name="out_destination" placeholder="es. Via Roma, 1">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-4 mb-2">
                     <label for="validazioneRegioneOrigine">Regione di partenza</label>
-                    <select class="form-control" id="validazioneRegioneOrigine" name="region_from" required>
+                    <select class="form-control" id="validazioneRegioneOrigine" name="region_from">
                         {% for region in regions %}
                             <option>{{ region }}</option>
                         {% endfor %}
@@ -133,7 +139,7 @@
                 </div>
                 <div class="col-md-4 mb-2">
                     <label for="validazioneRegioneDestinazione">Regione di destinazione</label>
-                    <select class="form-control" id="validazioneRegioneDestinazione" name="region_to" required>
+                    <select class="form-control" id="validazioneRegioneDestinazione" name="region_to">
                         {% for region in regions %}
                             <option>{{ region }}</option>
                         {% endfor %}
@@ -149,7 +155,7 @@
             <div class="form-row">
                 <div class="col-md-12 mb-2">
                     <label for="validazioneMotivazioneSpostamento">Spostamento determinato da</label>
-                    <select class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation" required>
+                    <select class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation">
                         <option>comprovate esigenze lavorative</option>
                         <option>assoluta urgenza (per trasferimenti in comune diverso)</option>
                         <option>situazione di necessità</option>
@@ -162,7 +168,7 @@
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
                         <label for="dichiarazione">A riguardo dichiara che:</label>
-                        <textarea class="form-control" id="dichiarazione" name="declaration" rows="3" required></textarea>
+                        <textarea class="form-control" id="dichiarazione" name="declaration" rows="3"></textarea>
                     </div>
                 </div>
             </div>
@@ -171,6 +177,5 @@
 
         </form>
     </div>
-
 
 {% endblock %}
