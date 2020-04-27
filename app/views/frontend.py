@@ -13,4 +13,4 @@ def index():
 
 @frontend.route('/renderform', methods=["POST"])
 def showform():
-    return render_template("bsform_template.html", **request.form)
+    return render_template("form_template.html", **request.form)
