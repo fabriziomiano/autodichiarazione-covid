@@ -62,7 +62,7 @@ $(function () {
                 // to dowload uncomment the lines below
                 // link.download = "dichiarazione_" + new Date() + ".pdf";
                 // link.click();
-                window.open(link.href, '_blank')
+                window.open(link.href)
             },
             complete: function () {
                 $("#loader").hide();
