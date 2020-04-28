@@ -3,17 +3,24 @@
 {% block content %}
 
     <div class="jumbotron">
-        <h2 class="display-6">Autodichiarazione COVID</h2>
+        <h2 class="display-6">Autodichiarazione COVID-19</h2>
         <p>
-            <i class="fa fa-bullhorn mr-2"></i>Versione modulo:
+            <i class="fa fa-bullhorn mr-2"></i>Modello autodichiarazione:
             <a href="https://www.interno.gov.it/sites/default/files/allegati/nuovo_modello_autodichiarazione_26.03.2020_editabile.pdf" target="_blank">26 Marzo 2020</a>
         </p>
-        <div class="alert alert-success" role="alert">
-            <strong>Attenzione:</strong> Non vengono raccolti cookies e nessun dato viene salvato sui server
+        <div class="alert alert-danger" role="alert">
+            <strong>Attenzione:</strong> Stando ad una
+            <a href="https://www.interno.gov.it/it/notizie/solo-cartaceo-no-app-modello-autodichiarazione" target="_blank">
+                notizia del 18 Marzo 2020 del Ministero dell'Interno
+            </a>
+            non risulta possibile esibire una versione digitale della dichiarazione
+        </div>
+        <div class="alert alert-warning" role="alert">
+            <strong>Nota:</strong> Non vengono raccolti cookies né salvati dati personali
         </div>
     </div>
 
-    <div class="container mb-4">
+    <main role="main" class="container">
         <form id="userForm" action="/generate_pdf" method="post">
 
             <h3>Dati Anagrafici</h3>
@@ -197,6 +204,17 @@
             </button>
 
         </form>
-    </div>
-
+    </main>
+    <hr>
+    <footer class="footer text-center mb-4">
+        <small>
+            <div class="container">
+            <span class="text-muted">
+                <a href="https://github.com/fabriziomiano/autodichiarazione-automatica" target="_blank"><i class="fab fa-github mr-1"></i>Github</a>  |
+                <a href="https://linkedin.com/in/fabriziomiano" target="_blank"><i class="fab fa-linkedin mr-1"></i>FMiano</a>  |
+                <a href="https://linkedin.com/in/giosueruscica" target="_blank"><i class="fab fa-linkedin mr-1"></i>GRuscica</a>
+            </span>
+            </div>
+        </small>
+    </footer>
 {% endblock %}
