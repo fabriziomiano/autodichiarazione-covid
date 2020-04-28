@@ -33,7 +33,7 @@ $(function () {
     })
 })
 
-// Ajax form post to fill the PDF
+// Ajax form post to fill the PDF and visualize the response
 $(function () {
     $("#genPDFButton").on('click', function (e) {
         e.preventDefault();
@@ -55,15 +55,15 @@ $(function () {
                 $("#loader").removeAttr("hidden").show();
                 $("#genPDFButton").hide();
             },
-            success: function (blob) {
-                // console.log(blob.size);
-                let link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.target = '_blank';
-                // to dowload uncomment the lines below
-                // link.download = "dichiarazione_" + new Date() + ".pdf";
+            success: function (response) {
+                let blob = new Blob([response], {type: 'application/pdf'});
+                let fileURL = URL.createObjectURL(blob);
+                window.open(fileURL);
+
+                // let link = document.createElement('a');
+                // link.href = window.URL.createObjectURL(blob);
+                // link.download = "dichiarazione_.pdf";
                 // link.click();
-                window.open(link.href)
             },
             complete: function () {
                 $("#loader").hide();
