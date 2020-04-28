@@ -34,6 +34,20 @@ $(function () {
 
 // Ajax form post to fill the PDF
 $(function () {
+
+    "use strict";
+
+    let csrf_token = "{{ csrf_token() }}";
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+            }
+        }
+    });
+
+
     $("#genPDFButton").on('click', function (e) {
         e.preventDefault();
         let form = $("#userForm");
