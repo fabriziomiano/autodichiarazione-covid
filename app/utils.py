@@ -1,9 +1,10 @@
 import os
-from flask import render_template
-from app.config import TEMPLATE_PATH
-import pdfrw
-from app.input_parsers import parse_single, parse_date, parse_multiple
 
+import pdfrw
+from flask import render_template
+
+from app.config import TEMPLATE_PATH
+from app.input_parsers import parse_single, parse_date, parse_multiple
 
 SEARCH_PATH = "./"
 ANNOT_KEY = '/Annots'
@@ -104,9 +105,7 @@ def parse_input(user_input, input_map):
             out.update(form_out)
     return out
 
-    
+
 def fill_template_from_input(user_input, template_path, out_path, input_map):
     parsed_input = parse_input(user_input, input_map)
     write_fillable_pdf(template_path, out_path, parsed_input)
-
-
