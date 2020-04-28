@@ -59,17 +59,18 @@ $(function () {
                 // console.log(blob.size);
                 let link = document.createElement('a');
                 link.href = window.URL.createObjectURL(blob);
+                link.target = '_blank';
                 // to dowload uncomment the lines below
-                link.download = "dichiarazione_" + new Date() + ".pdf";
-                link.click();
-                // window.open(link.href)
+                // link.download = "dichiarazione_" + new Date() + ".pdf";
+                // link.click();
+                window.open(link.href)
             },
             complete: function () {
                 $("#loader").hide();
                 $("#genPDFButton").show();
             },
             error: function () {
-                alert("Errore nell'invio di dati")
+                alert("Errore nell'invio dei dati")
             }
         };
 
@@ -79,4 +80,16 @@ $(function () {
             }
         )
     });
+})
+
+function selectElement(id, valueToSelect) {
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+}
+
+$(function () {
+    $("#validazioneRegioneOrigine").on('change', function () {
+        let selectedOriginRegion = $("select#validazioneRegioneOrigine").val();
+        selectElement("validazioneRegioneDestinazione", selectedOriginRegion);
+    })
 })
