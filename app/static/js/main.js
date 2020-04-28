@@ -15,17 +15,16 @@ $(function () {
 $(function () {
     $("#checkboxResidenza").on('change', function () {
         if ($(this).prop("checked") === true) {
+            $("#validazioneDomicilio").prop("disabled", true)
+            $("#validazioneIndirizzoDomicilio").prop("disabled", true)
+            $("#validazioneProvinciaDomicilio").prop("disabled", true)
             $('#validazioneDomicilio').val($('#validazioneResidenza').val());
             $('#validazioneIndirizzoDomicilio').val($('#validazioneIndirizzoResidenza').val());
             $('#validazioneProvinciaDomicilio').val($('#validazioneProvinciaResidenza').val());
-            $("#validazioneDomicilio").prop("readonly", "readonly")
-            $("#validazioneIndirizzoDomicilio").prop("readonly", "readonly")
-            $("#validazioneProvinciaDomicilio").prop("readonly", "readonly")
-
         } else {
-            $("#validazioneDomicilio").removeAttr("readonly")
-            $("#validazioneIndirizzoDomicilio").removeAttr("readonly")
-            $("#validazioneProvinciaDomicilio").removeAttr("readonly")
+            $("#validazioneDomicilio").prop("disabled", false)
+            $("#validazioneIndirizzoDomicilio").prop("disabled", false)
+            $("#validazioneProvinciaDomicilio").prop("disabled", false)
             $('#validazioneDomicilio').val("");
             $('#validazioneIndirizzoDomicilio').val("");
             $('#validazioneProvinciaDomicilio').val("");
