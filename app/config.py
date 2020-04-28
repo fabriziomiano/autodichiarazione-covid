@@ -6,8 +6,8 @@ REGIONS = [
     "Valle d'Aosta", 'Veneto'
 ]
 TEMPLATE_PATH = "form_template.html"
-DEFAULT_FILENAME = "dichiarazione.pdf"
-
+PDF_OUT_FILENAME = "dichiarazione.pdf"
+PDF_TEMPLATE_FILENAME = "pdf_form.pdf"
 INPUT_FORM_MAP = {
     "name": "Il sottoscritto",
     "bdate": {
