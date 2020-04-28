@@ -33,10 +33,10 @@ $(function () {
     })
 })
 
-// Ajax form post to fill the PDF and visualize the response
 $(function () {
     $("#genPDFButton").on('click', function (e) {
         e.preventDefault();
+        let newWindow = window.open();  // fool ad blockers
         let form = $("#userForm");
         let type = form.prop("method");
         let url = form.prop("action");
@@ -57,15 +57,7 @@ $(function () {
             },
             success: function (response) {
                 let blob = new Blob([response], {type: 'application/pdf'});
-                let fileURL = URL.createObjectURL(blob);
-                window.open(fileURL);
-                // se da mobile scarica il file sul dispositivo
-                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                    let link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
-                    link.download = "dichiarazione.pdf";
-                    link.click();
-                }
+                newWindow.location = URL.createObjectURL(blob);
             },
             complete: function () {
                 $("#loader").hide();
