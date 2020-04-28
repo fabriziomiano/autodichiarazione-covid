@@ -12,9 +12,9 @@ INPUT_FORM_MAP = {
     "name": "Il sottoscritto",
     "bdate": {
         "is_date": {
-            "bday": "nato giorno",
-            "bmonth": "nato mese",
-            "byear": "nato anno"
+            "day": "nato giorno",
+            "month": "nato mese",
+            "year": "nato anno"
         }
     },
     "bplace": "luogo di nascita",
@@ -31,9 +31,9 @@ INPUT_FORM_MAP = {
     "document_released_by": "rilasciato da",
     "doc_released_date": {
         "is_date": {
-            "doc_released_day": "giorno documento",
-            "doc_released_month": "mese documento",
-            "doc_released_year": "anno documento"
+            "day": "giorno documento",
+            "month": "mese documento",
+            "year": "anno documento"
         }
     },
     "out_origin": "Testo1",
