@@ -32,3 +32,51 @@ $(function () {
         }
     })
 })
+
+// Ajax form post to fill the PDF
+$(function () {
+    $("#genPDFButton").on('click', function (e) {
+        e.preventDefault();
+        let form = $("#userForm");
+        let type = form.prop("method");
+        let url = form.prop("action");
+        let formContent = document.getElementById("userForm");
+        let formData = new FormData(formContent);
+        let request = {
+            type: type,
+            url: url,
+            data: formData,
+            processData: false,
+            contentType: false,
+            xhrFields: {
+                responseType: 'blob'
+            },
+            beforeSend: function () {
+                $("#loader").removeAttr("hidden").show();
+                $("#genPDFButton").hide();
+            },
+            success: function (blob) {
+                // console.log(blob.size);
+                let link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                // to dowload uncomment the lines below
+                // link.download = "dichiarazione_" + new Date() + ".pdf";
+                // link.click();
+                window.open(link.href, '_blank')
+            },
+            complete: function () {
+                $("#loader").hide();
+                $("#genPDFButton").show();
+            },
+            error: function () {
+                alert("Errore nell'invio di dati")
+            }
+        };
+
+        console.log("sending data to backend")
+        $.ajax(request).then(r => {
+                console.log("done");
+            }
+        )
+    });
+})
