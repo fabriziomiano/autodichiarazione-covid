@@ -1,11 +1,8 @@
-import pdfkit
-import jinja2
 import os
 from flask import render_template
 from app.config import TEMPLATE_PATH
 import pdfrw
 from app.input_parsers import parse_single, parse_date, parse_multiple
-import textwrap
 
 
 SEARCH_PATH = "./"
