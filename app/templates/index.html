@@ -9,14 +9,14 @@
             <a href="https://www.interno.gov.it/sites/default/files/allegati/nuovo_modello_autodichiarazione_26.03.2020_editabile.pdf" target="_blank">26 Marzo 2020</a>
         </p>
         <div class="alert alert-danger" role="alert">
-            <strong>Attenzione:</strong> Stando ad una
+            <strong>Attenzione:</strong>
+            Stampare su carta il foglio A4 generato
             <a href="https://www.interno.gov.it/it/notizie/solo-cartaceo-no-app-modello-autodichiarazione" target="_blank">
-                notizia del 18 Marzo 2020 del Ministero dell'Interno
+                (solo la dichiarazione cartacea garantisce completa conformità alle normative del ministero degli interni)
             </a>
-            non risulta possibile esibire una versione digitale della dichiarazione
         </div>
         <div class="alert alert-warning" role="alert">
-            <strong>Nota:</strong> Non vengono raccolti cookies né salvati dati personali
+            <strong>Nota:</strong> No dati personali salvati, no cookies raccolti
         </div>
     </div>
 
@@ -204,19 +204,31 @@
             <button class="btn btn-primary" id="genPDFButton" type="submit">
                 <i class="far fa-file-pdf mr-2"></i>Genera PDF
             </button>
+            <button class="btn btn-primary" type="button" id="loader" hidden>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="sr-only">Loading...</span>
+            </button>
 
         </form>
     </main>
+
     <hr>
     <footer class="footer text-center mb-4">
-        <small>
-            <div class="container">
+        <div class="container">
+            <small>
             <span class="text-muted">
                 <a href="https://github.com/fabriziomiano/autodichiarazione-automatica" target="_blank"><i class="fab fa-github mr-1"></i>Github</a>  |
                 <a href="https://linkedin.com/in/fabriziomiano" target="_blank"><i class="fab fa-linkedin mr-1"></i>FMiano</a>  |
                 <a href="https://linkedin.com/in/giosueruscica" target="_blank"><i class="fab fa-linkedin mr-1"></i>GRuscica</a>
             </span>
-            </div>
-        </small>
+            </small>
+        </div>
+            <div class="container">
+            <small>
+            <span class="text-muted">
+                Da un'idea di Bruno Tomasello
+            </span>
+            </small>
+        </div>
     </footer>
 {% endblock %}
