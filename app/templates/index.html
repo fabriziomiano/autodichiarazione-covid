@@ -87,7 +87,6 @@
             </div>
 
             <div class="form-row">
-
                 <div class="col-md-4 mb-2">
                     <label for="validazioneDomicilio">Domiciliato in</label>
                     <input type="text" class="form-control" id="validazioneDomicilio" name="dplace">
@@ -160,7 +159,7 @@
                     <label for="validazioneRegioneOrigine">Regione di partenza</label>
                     <select class="form-control" id="validazioneRegioneOrigine" name="region_from">
                         {% for region in regions %}
-                            <option>{{ region }}</option>
+                            <option value="{{ region }}">{{ region }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -168,7 +167,7 @@
                     <label for="validazioneRegioneDestinazione">Regione di destinazione</label>
                     <select class="form-control" id="validazioneRegioneDestinazione" name="region_to">
                         {% for region in regions %}
-                            <option>{{ region }}</option>
+                            <option value="{{ region }}">{{ region }}</option>
                         {% endfor %}
                     </select>
                 </div>
