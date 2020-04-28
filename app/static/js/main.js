@@ -58,11 +58,13 @@ $(function () {
                 let blob = new Blob([response], {type: 'application/pdf'});
                 let fileURL = URL.createObjectURL(blob);
                 window.open(fileURL);
-
-                // let link = document.createElement('a');
-                // link.href = window.URL.createObjectURL(blob);
-                // link.download = "dichiarazione_.pdf";
-                // link.click();
+                // se da mobile scarica il file sul dispositivo
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    let link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "dichiarazione.pdf";
+                    link.click();
+                }
             },
             complete: function () {
                 $("#loader").hide();
