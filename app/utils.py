@@ -4,7 +4,7 @@ import os
 from flask import render_template
 from app.config import TEMPLATE_PATH
 import pdfrw
-from input_parsers import parse_single, parse_date, parse_multiple
+from app.input_parsers import parse_single, parse_date, parse_multiple
 import textwrap
 
 
@@ -84,37 +84,27 @@ def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
     pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
 
-def wrap_text_in_form(s, sizes):
-    outs = []
-    tmp_s = s
-    for size in sizes[:-1]:
-        parts = textwrap.wrap(tmp_s, width=size)
-        outs.append(parts[0])
-        tmp_s = s[len(parts[0]):]
-    outs.append(" ".join(parts[1:]))
-    return outs
-    
-
 def get_input_type(k, input_map):
     value = input_map[k]
+    out = "single"
     if isinstance(value, dict):
         if value.get("is_date") is not None:
             out = "date"
         elif value.get("is_multiple") is not None:
             out = "multiple"
-    else:
-        out = "single"
     return out
 
 
 def parse_input(user_input, input_map):
     out = {}
-    for k, v in input_map.items():
-        k_input = user_input.get(k)
-        if k_input is not None:
-            k_type = get_input_type(k, input_map)
-            k_out = FIELDS_DISPATCHER[k_type](k_input)
-            out.update(k_out)
+    for front_key in input_map:
+        value = user_input.get(front_key)
+        if value is not None:
+            key_type = get_input_type(front_key, input_map)
+            form_out = FIELDS_DISPATCHER[key_type](
+                front_key, value, input_map
+            )
+            out.update(form_out)
     return out
 
     

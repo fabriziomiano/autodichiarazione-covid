@@ -1,5 +1,17 @@
-from utils import wrap_text_in_form
+import textwrap
 
+
+def wrap_text_in_form(s, sizes):
+    outs = []
+    tmp_s = s
+    parts = []
+    for size in sizes[:-1]:
+        parts = textwrap.wrap(tmp_s, width=size) or [""]
+        outs.append(parts[0])
+        tmp_s = s[len(parts[0]):]
+    outs.append(" ".join(parts[1:]))
+    return outs
+    
 
 def parse_single(k, value, input_map):
     return {input_map[k]: value}
@@ -8,9 +20,9 @@ def parse_single(k, value, input_map):
 def parse_date(k, value, input_map):
     d, m, y = value.split("/")
     return {
-        input_map[k]["day"]: d,
-        input_map[k]["month"]: m,
-        input_map[k]["year"]: y
+        input_map[k]["is_date"]["day"]: d,
+        input_map[k]["is_date"]["month"]: m,
+        input_map[k]["is_date"]["year"]: y
     }
 
 
