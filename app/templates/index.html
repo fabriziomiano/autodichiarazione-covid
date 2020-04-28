@@ -22,7 +22,7 @@
 
     <main role="main" class="container">
         <form id="userForm" action="/generate_pdf" method="post">
-
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <h3>Dati Anagrafici</h3>
 
             <div class="form-row">
@@ -217,16 +217,7 @@
         <div class="container">
             <small>
             <span class="text-muted">
-                <a href="https://github.com/fabriziomiano/autodichiarazione-automatica" target="_blank"><i class="fab fa-github mr-1"></i>Github</a>  |
-                <a href="https://linkedin.com/in/fabriziomiano" target="_blank"><i class="fab fa-linkedin mr-1"></i>FMiano</a>  |
-                <a href="https://linkedin.com/in/giosueruscica" target="_blank"><i class="fab fa-linkedin mr-1"></i>GRuscica</a>
-            </span>
-            </small>
-        </div>
-            <div class="container">
-            <small>
-            <span class="text-muted">
-                Da un'idea di Bruno Tomasello
+                <a href="https://github.com/fabriziomiano/autodichiarazione-automatica" target="_blank"><i class="fab fa-github mr-1"></i>Github</a>
             </span>
             </small>
         </div>
