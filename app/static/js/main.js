@@ -59,9 +59,9 @@ $(function () {
                 let link = document.createElement('a');
                 link.href = window.URL.createObjectURL(blob);
                 // to dowload uncomment the lines below
-                // link.download = "dichiarazione_" + new Date() + ".pdf";
-                // link.click();
-                window.open(link.href)
+                link.download = "dichiarazione_" + new Date() + ".pdf";
+                link.click();
+                // window.open(link.href)
             },
             complete: function () {
                 $("#loader").hide();
