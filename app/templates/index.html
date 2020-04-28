@@ -14,7 +14,7 @@
     </div>
 
     <div class="container mb-4">
-        <form id="userForm" action="/renderform" method="post">
+        <form id="userForm" action="/generate_pdf" method="post">
 
             <h3>Dati Anagrafici</h3>
 
@@ -118,7 +118,7 @@
                         <label class="control-label">In data</label>
                         <div class="input-group date" data-target-input="nearest">
                             <label for="id_release_date"></label>
-                            <input type="text" class="form-control datetimepicker-input" id="id_release_date" name="doc_released_date" data-target="#birthdate" placeholder="es. 1/1/2020">
+                            <input type="text" class="form-control datetimepicker-input" id="id_release_date" name="doc_released_date" data-target="#id_release_date" placeholder="es. 1/1/2020">
                             <div class="input-group-append" data-target="#id_release_date" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -186,7 +186,9 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" id="genPDFButton" type="submit"><i class="far fa-file-alt mr-2"></i>Compila</button>
+            <button class="btn btn-primary" id="genPDFButton" type="submit">
+                <i class="far fa-file-pdf mr-2"></i>Genera PDF
+            </button>
 
         </form>
     </div>
