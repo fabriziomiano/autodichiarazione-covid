@@ -18,7 +18,10 @@ def parse_single(k, value, input_map):
 
 
 def parse_date(k, value, input_map):
-    d, m, y = value.split("/")
+    try:
+        d, m, y = value.split("/")
+    except ValueError:
+        d, m, y = "", "", ""
     return {
         input_map[k]["is_date"]["day"]: d,
         input_map[k]["is_date"]["month"]: m,
