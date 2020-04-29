@@ -17,20 +17,14 @@ $(function () {
     $("#checkboxResidenza").on('change', function (e) {
         e.preventDefault();
         if ($(this).prop("checked") === true) {
-            $('#validazioneDomicilio').val($('#validazioneResidenza').val());
-            $('#validazioneIndirizzoDomicilio').val($('#validazioneIndirizzoResidenza').val());
-            $('#validazioneProvinciaDomicilio').val($('#validazioneProvinciaResidenza').val());
-            $("#validazioneDomicilio").prop("readonly", "readonly")
-            $("#validazioneIndirizzoDomicilio").prop("readonly", "readonly")
-            $("#validazioneProvinciaDomicilio").prop("readonly", "readonly")
+            $("#dplace").prop("readonly", "readonly").val($('#rplace').val());
+            $("#daddress").prop("readonly", "readonly").val($('#raddress').val());
+            $("#dprovince").prop("readonly", "readonly").val($('#rprovince').val());
 
         } else {
-            $("#validazioneDomicilio").removeAttr("readonly")
-            $("#validazioneIndirizzoDomicilio").removeAttr("readonly")
-            $("#validazioneProvinciaDomicilio").removeAttr("readonly")
-            $('#validazioneDomicilio').val("");
-            $('#validazioneIndirizzoDomicilio').val("");
-            $('#validazioneProvinciaDomicilio').val("");
+            $("#dplace").removeAttr("readonly").val("");
+            $("#daddress").removeAttr("readonly").val("");
+            $("#dprovince").removeAttr("readonly").val("");
         }
     })
 })
@@ -40,14 +34,15 @@ $(function () {
     $("#genPDFButton").on('click', function (e) {
         e.preventDefault();
         generatePDF();
+        saveProfile();
     });
 })
 
 // trigger destination region selection when origin changes
 $(function () {
-    $("#validazioneRegioneOrigine").on('change', function () {
-        let selectedOriginRegion = $("select#validazioneRegioneOrigine").val();
-        selectElement("validazioneRegioneDestinazione", selectedOriginRegion);
+    $("#region_from").on('change', function () {
+        let selectedOriginRegion = $("select#region_from").val();
+        selectElement("region_to", selectedOriginRegion);
     })
 })
 
@@ -69,4 +64,16 @@ $(function () {
         e.preventDefault();
         deletePDF();
     })
+})
+
+// check if user in localStorage
+$(function () {
+    if (hasProfile()) {
+        $("#personalData").hide();
+        $("#personalDataSummary").removeAttr("hidden").show();
+        $("#greetingsHeader").text("Ciao, " + localStorage.getItem("name"));
+        for (let key in fields) {
+            selectElement(key, fields[key])
+        }
+    }
 })
