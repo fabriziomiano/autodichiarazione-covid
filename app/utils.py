@@ -138,6 +138,10 @@ def write_fields_in_pdf(input_pdf_path, output_pdf_path, data_dict):
             and field[KIDS_KEY]
         ):
             key = field[ANNOT_FIELD_KEY][1:-1]
+            try:
+                int(data_dict[key][-1])
+            except Exception:
+                continue
             if key in data_dict.keys():
                 choice_nr = int(data_dict[key][-1])
                 field[KIDS_KEY][choice_nr-1].update(
@@ -148,4 +152,4 @@ def write_fields_in_pdf(input_pdf_path, output_pdf_path, data_dict):
     
 def fill_template_from_input(user_input, template_path, out_path, input_map):
     parsed_input = parse_input(user_input, input_map)
-    write_fillable_pdf(template_path, out_path, parsed_input)
+    write_fields_in_pdf(template_path, out_path, parsed_input)
