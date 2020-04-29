@@ -46,7 +46,13 @@ INPUT_FORM_MAP = {
             "Testo6": 45
         }
     },
-    "out_motivation": "Group7",
+    "out_motivation": {
+        "is_xor_checklist": {
+            "Group7": [
+                "Scelta1", "Scelta2", "Scelta3", "Scelta4"
+            ]
+        }
+    },
     "declaration": {
         "is_multiple": {
             "A  questo  riguardo  dichiara che 1": 53,
