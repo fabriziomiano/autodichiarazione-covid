@@ -36,7 +36,6 @@ $(function () {
 $(function () {
     $("#genPDFButton").on('click', function (e) {
         e.preventDefault();
-        let newWindow = window.open();  // fool ad blockers
         let form = $("#userForm");
         let type = form.prop("method");
         let url = form.prop("action");
@@ -48,20 +47,14 @@ $(function () {
             data: formData,
             processData: false,
             contentType: false,
-            xhrFields: {
-                responseType: 'blob'
-            },
             beforeSend: function () {
                 $("#loader").removeAttr("hidden").show();
                 $("#genPDFButton").hide();
             },
             success: function (response) {
-                let blob = new Blob([response], {type: 'application/pdf'});
-                newWindow.location = URL.createObjectURL(blob);
-            },
-            complete: function () {
                 $("#loader").hide();
-                $("#genPDFButton").show();
+                $("#seePDFButton").removeAttr("hidden").show();
+                $("#seePDFForm").attr("action", "/download_and_remove/" + response);
             },
             error: function () {
                 alert("Errore nell'invio dei dati")
@@ -75,6 +68,34 @@ $(function () {
         )
     });
 })
+
+
+$(function () {
+    $("#seePDFButton").on('click', function (e) {
+        e.preventDefault();
+        let newWindow = window.open();  // fool ad blockers
+        let form = $("#seePDFForm");
+        let type = 'get';
+        let url = form.prop("action");
+        let request = {
+            type: type,
+            url: url,
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (response) {
+                let blob = new Blob([response], {type: 'application/pdf'});
+                newWindow.location = URL.createObjectURL(blob);
+                $("#seePDFButton").prop("hidden", "hidden");
+                $("#genPDFButton").show();
+            }
+        }
+        $.ajax(request).then(r => {
+            console.log("done");
+        })
+    })
+})
+
 
 function selectElement(id, valueToSelect) {
     let element = document.getElementById(id);

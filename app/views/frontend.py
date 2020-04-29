@@ -43,9 +43,7 @@ def generate_pdf():
         out_pdf_path,
         INPUT_FORM_MAP
     )
-    return redirect(
-        url_for('frontend.download_and_remove', filename=pdf_filename)
-    )
+    return pdf_filename
 
 
 @frontend.route('/download_and_remove/<filename>')
