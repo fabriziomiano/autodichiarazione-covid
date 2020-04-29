@@ -34,4 +34,14 @@ def parse_multiple(k, value, input_map):
     sizes = [x[1] for x in fields]
     parts = wrap_text_in_form(value, sizes)
     return {k: p for (k, s), p in zip(fields, parts)}
-    
+
+
+def parse_xor_checklist(k, value, input_map):
+    form_key, choices = next(
+        x for x in input_map[k]["is_xor_checklist"].items()
+    )
+    try:
+        form_value = choices[int(value)]
+    except ValueError:
+        form_value = value
+    return {form_key: form_value}

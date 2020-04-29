@@ -3,7 +3,7 @@ import time
 import uuid
 
 from flask import (
-    Blueprint, render_template, request, current_app, redirect, url_for
+    Blueprint, render_template, request, current_app
 )
 
 from app.config import (
@@ -17,14 +17,10 @@ frontend = Blueprint("frontend", __name__)
 @frontend.route('/')
 @frontend.route('/index')
 def index():
-    return render_template(
-        "index.html",
-        regions=REGIONS,
-        ts=time.time()
-    )
+    return render_template("index.html", regions=REGIONS, ts=time.time())
 
 
-@frontend.route('/generate_pdf', methods=["POST"])
+@frontend.route('/generate', methods=["POST"])
 def generate_pdf():
     """
     Get a client-side validated form, create the PDF, and redirect to
@@ -46,7 +42,7 @@ def generate_pdf():
     return pdf_filename
 
 
-@frontend.route('/download_and_remove/<filename>')
+@frontend.route('/download/<filename>')
 def download_and_remove(filename):
     """
     Serve file with filename in UPLOAD_FOLDER before deleting it
@@ -63,3 +59,16 @@ def download_and_remove(filename):
     r = current_app.response_class(generate(), mimetype='application/pdf')
     r.headers.set('Content-Disposition', 'attachment', filename=PDF_OUT_FILENAME)
     return r
+
+
+@frontend.route('/remove/<filename>', methods=["POST"])
+def remove_pdf(filename):
+    try:
+        path = os.path.join(
+            current_app.root_path, current_app.config['UPLOAD_FOLDER'], filename)
+        os.remove(path)
+        response = "OK"
+    except Exception as e:
+        current_app.logger.error(e)
+        response = "KO"
+    return response

@@ -12,8 +12,10 @@ $(function () {
     })
 });
 
+// duplicate value domicilio inputs
 $(function () {
-    $("#checkboxResidenza").on('change', function () {
+    $("#checkboxResidenza").on('change', function (e) {
+        e.preventDefault();
         if ($(this).prop("checked") === true) {
             $("#validazioneDomicilio").prop("disabled", true)
             $("#validazioneIndirizzoDomicilio").prop("disabled", true)
@@ -32,58 +34,38 @@ $(function () {
     })
 })
 
+// trigger pdf generation when button is clicked
 $(function () {
     $("#genPDFButton").on('click', function (e) {
         e.preventDefault();
-        let form = $("#userForm");
-        let type = form.prop("method");
-        let url = form.prop("action");
-        let formContent = document.getElementById("userForm");
-        let formData = new FormData(formContent);
-        let request = {
-            type: type,
-            url: url,
-            data: formData,
-            processData: false,
-            contentType: false,
-            beforeSend: function () {
-                console.log("sending data to backend")
-                $("#loader").removeAttr("hidden").show();
-                $("#genPDFButton").hide();
-            },
-            success: function () {
-                console.log("success");
-            },
-            error: function () {
-                alert("Errore nell'invio dei dati")
-            }
-        };
-
-        $.ajax(request).then(response => {
-                console.log("done");
-                $("#loader").hide();
-                $("#seePDFButton").removeAttr("hidden").show();
-                $("#seePDFForm").attr("action", "/download_and_remove/" + response);
-            }
-        )
+        generatePDF();
     });
 })
 
-
-function toggleGenerateSeeButtons() {
-    $("#seePDFButton").prop("hidden", "hidden");
-    $("#genPDFButton").show();
-}
-
-
-function selectElement(id, valueToSelect) {
-    let element = document.getElementById(id);
-    element.value = valueToSelect;
-}
-
+// trigger destination region selection when origin changes
 $(function () {
     $("#validazioneRegioneOrigine").on('change', function () {
         let selectedOriginRegion = $("select#validazioneRegioneOrigine").val();
         selectElement("validazioneRegioneDestinazione", selectedOriginRegion);
+    })
+})
+
+// trigger resetGeneratePDFButton when input values change and
+// pdf deletion if already submitted
+$(function () {
+    $("input[class=form-control]").on('change', function (e) {
+        e.preventDefault();
+        resetGeneratePDFButton();
+        if (isGenerationSubmitted($("#editPDFForm"))) {
+            deletePDF();
+        }
+    })
+})
+
+// trigger pdf deletion from server when editPDFButton is clicked
+$(function () {
+    $("#editPDFButton").on('click', function (e) {
+        e.preventDefault();
+        deletePDF();
     })
 })

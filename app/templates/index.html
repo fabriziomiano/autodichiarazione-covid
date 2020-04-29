@@ -21,7 +21,7 @@
     </div>
 
     <main role="main" class="container">
-        <form id="userForm" action="/generate_pdf" method="post">
+        <form id="userForm" action="/generate" method="post">
             <h3>Dati Anagrafici</h3>
 
             <div class="form-row">
@@ -209,11 +209,25 @@
                 <span class="sr-only">Loading...</span>
             </button>
         </form>
-        <form id="seePDFForm" method="get" action="">
-            <button class="btn btn-success" id="seePDFButton" type="submit" hidden onclick="toggleGenerateSeeButtons()">
-                <i class="far fa-file-pdf mr-2"></i>Visualizza PDF
-            </button>
-        </form>
+
+        <div class="container">
+            <div class="row">
+                <div class="span6 mr-2">
+                    <form class="form-inline" id="editPDFForm" method="post">
+                        <button class="btn btn-danger" id="editPDFButton" type="submit" hidden onclick="toggleGenerateSeeButtons()">
+                            <i class="far fa-edit mr-2"></i>Modifica
+                        </button>
+                    </form>
+                </div>
+                <div class="span6">
+                    <form class="form-inline" id="seePDFForm" method="get" action="">
+                        <button class="btn btn-success" id="seePDFButton" type="submit" hidden onclick="toggleGenerateSeeButtons()">
+                            <i class="far fa-file-pdf mr-2"></i>Visualizza PDF
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <hr>
