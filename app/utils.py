@@ -1,10 +1,11 @@
 import os
-
 import pdfrw
 from flask import render_template
-
 from app.config import TEMPLATE_PATH
-from app.input_parsers import parse_single, parse_date, parse_multiple
+from app.input_parsers import (
+    parse_single, parse_date, parse_multiple, parse_xor_checklist
+)
+
 
 SEARCH_PATH = "./"
 ANNOT_KEY = '/Annots'
@@ -13,14 +14,21 @@ ANNOT_VAL_KEY = '/V'
 ANNOT_RECT_KEY = '/Rect'
 SUBTYPE_KEY = '/Subtype'
 WIDGET_SUBTYPE_KEY = '/Widget'
+FIELD_TYPE_KEY = "/FT"
+BUTTON_KEY = "/Btn"
+TEXT_KEY = "/Tx"
+KIDS_KEY = "/Kids"
 FIELDS_DISPATCHER = {
     "single": parse_single,
     "date": parse_date,
-    "multiple": parse_multiple
+    "multiple": parse_multiple,
+    "xor_checklist": parse_xor_checklist
 }
 
 
 def get_template(path=TEMPLATE_PATH, searchpath="./"):
+    import jinja2
+
     templateLoader = jinja2.FileSystemLoader(searchpath=searchpath)
     templateEnv = jinja2.Environment(loader=templateLoader)
     return templateEnv.get_template(path)
@@ -47,6 +55,8 @@ def html_to_pdf(path_or_string, pdf_path, options=None):
         }
 
     """
+    import pdfkit
+
     if os.path.isfile(path_or_string):
         pdfkit.from_file(path_or_string, pdf_path, options=options)
     else:
@@ -90,6 +100,8 @@ def get_input_type(k, input_map):
             out = "date"
         elif value.get("is_multiple") is not None:
             out = "multiple"
+        elif value.get("is_xor_checklist") is not None:
+            out = "xor_checklist"
     return out
 
 
@@ -106,6 +118,34 @@ def parse_input(user_input, input_map):
     return out
 
 
+def write_fields_in_pdf(input_pdf_path, output_pdf_path, data_dict):
+    template_pdf = pdfrw.PdfReader(input_pdf_path)
+    template_pdf.Root.AcroForm.update(
+        pdfrw.PdfDict(NeedAppearances=pdfrw.PdfObject('true')))
+    acros = template_pdf.Root.AcroForm
+    
+    for field in acros["/Fields"]:
+        if field[FIELD_TYPE_KEY] == TEXT_KEY and field[ANNOT_FIELD_KEY]:
+            key = field[ANNOT_FIELD_KEY][1:-1]
+            if key in data_dict.keys():
+                field.update(
+                        pdfrw.PdfDict(
+                            **{"V": data_dict[key], "AS": data_dict[key]}
+                        ))
+        elif (
+            field[FIELD_TYPE_KEY] == BUTTON_KEY
+            and field[ANNOT_FIELD_KEY]
+            and field[KIDS_KEY]
+        ):
+            key = field[ANNOT_FIELD_KEY][1:-1]
+            if key in data_dict.keys():
+                choice_nr = int(data_dict[key][-1])
+                field[KIDS_KEY][choice_nr-1].update(
+                    pdfrw.PdfDict(AS=data_dict[key])
+                )
+    pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
+
+    
 def fill_template_from_input(user_input, template_path, out_path, input_map):
     parsed_input = parse_input(user_input, input_map)
     write_fillable_pdf(template_path, out_path, parsed_input)
