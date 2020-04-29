@@ -48,53 +48,33 @@ $(function () {
             processData: false,
             contentType: false,
             beforeSend: function () {
+                console.log("sending data to backend")
                 $("#loader").removeAttr("hidden").show();
                 $("#genPDFButton").hide();
             },
-            success: function (response) {
-                $("#loader").hide();
-                $("#seePDFButton").removeAttr("hidden").show();
-                $("#seePDFForm").attr("action", "/download_and_remove/" + response);
+            success: function () {
+                console.log("success");
             },
             error: function () {
                 alert("Errore nell'invio dei dati")
             }
         };
 
-        console.log("sending data to backend")
-        $.ajax(request).then(r => {
+        $.ajax(request).then(response => {
                 console.log("done");
+                $("#loader").hide();
+                $("#seePDFButton").removeAttr("hidden").show();
+                $("#seePDFForm").attr("action", "/download_and_remove/" + response);
             }
         )
     });
 })
 
 
-$(function () {
-    $("#seePDFButton").on('click', function (e) {
-        e.preventDefault();
-        let newWindow = window.open();  // fool ad blockers
-        let form = $("#seePDFForm");
-        let type = 'get';
-        let url = form.prop("action");
-        let request = {
-            type: type,
-            url: url,
-            xhrFields: {
-                responseType: 'blob'
-            },
-            success: function (response) {
-                let blob = new Blob([response], {type: 'application/pdf'});
-                newWindow.location = URL.createObjectURL(blob);
-                $("#seePDFButton").prop("hidden", "hidden");
-                $("#genPDFButton").show();
-            }
-        }
-        $.ajax(request).then(r => {
-            console.log("done");
-        })
-    })
-})
+function toggleGenerateSeeButtons() {
+    $("#seePDFButton").prop("hidden", "hidden");
+    $("#genPDFButton").show();
+}
 
 
 function selectElement(id, valueToSelect) {
