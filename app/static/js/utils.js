@@ -1,3 +1,5 @@
+let fields = getProfile();
+
 // Ajax call for pdf generation
 function generatePDF() {
     let form = $("#userForm");
@@ -31,15 +33,31 @@ function generatePDF() {
             $("#editPDFForm").attr("action", "/remove/" + response);
             $("#seePDFButton").removeAttr("hidden").show();
             $("#seePDFForm").attr("action", "/download/" + response);
+            $("#personalData").hide();
+            $("#greetingsHeader").text("Ciao, " + localStorage.getItem("name"));
+            $("#personalDataSummary").removeAttr("hidden").show();
         }
     )
 }
 
-// toggle buttons
-function toggleGenerateSeeButtons() {
+// toggle generate/edit buttons
+function toggleGenEditButtons() {
     $("#seePDFButton").prop("hidden", "hidden");
     $("#editPDFButton").prop("hidden", "hidden");
     $("#genPDFButton").show();
+}
+
+// show data summary after visualizing pdf
+function toggleVisualizePDFButton() {
+    toggleGenEditButtons();
+    showPersonalDataSummary();
+    location.reload();
+}
+
+// show perasonal data after modifying
+function toggleEditFormButton() {
+    toggleGenEditButtons();
+    showPersonalData();
 }
 
 // select option from select box
@@ -83,4 +101,54 @@ function resetGeneratePDFButton() {
 // check if pdf generation has already been submitted
 function isGenerationSubmitted(form) {
     return !!$(form).prop("action").includes(".pdf");
+}
+
+// check if user has already been here
+function hasProfile() {
+    return localStorage.getItem('name') !== null
+}
+
+// save user profile
+function saveProfile() {
+    for (let field of $('#userForm input:not([disabled]):not([type=checkbox])')) {
+        localStorage.setItem(field.id, field.value)
+    }
+}
+
+// retrieve user profile
+function getProfile() {
+    const fields = {}
+    for (let i = 0; i < localStorage.length; i++) {
+        const name = localStorage.key(i)
+        fields[name] = localStorage.getItem(name)
+    }
+    return fields
+}
+
+// show personal data div and hide summary
+function showPersonalData() {
+    $('#personalData').show();
+    $('#personalDataSummary').hide();
+}
+
+// show personal data summary div and hide personal data
+function showPersonalDataSummary() {
+    $('#personalData').hide();
+    $('#personalDataSummary').removeAttr("hidden").show();
+    location.reload();
+}
+
+// empty form
+function emptyForm() {
+    for (let key in fields) {
+        selectElement(key, "");
+    }
+}
+
+// clear local storage
+function deletePersonalData() {
+    showPersonalData();
+    emptyForm();
+    localStorage.clear();
+    alert('Profilo eliminato');
 }
