@@ -16,187 +16,209 @@
             </a>
         </div>
         <div class="alert alert-warning" role="alert">
-            <strong>Nota:</strong> I dati personali non vengono salvati
+            <strong>Nota:</strong> I dati personali non vengono salvati sui server
         </div>
     </div>
 
     <main role="main" class="container">
         <form id="userForm" action="/generate" method="post">
-            <h3>Dati Anagrafici</h3>
 
-            <div class="form-row">
-                <div class="col-md-4 mb-2">
-                    <label for="validazioneNome">Il sottoscritto</label>
-                    <input type="text" class="form-control" id="validazioneNome" name="name" placeholder="es. Mario Rossi">
-                </div>
-                <div class="col-md-3 mb-2">
-                    <div class="form-group">
-                        <label class="control-label">Nato il</label>
-                        <div class="input-group date" data-target-input="nearest">
-                            <label for="birthdate"></label>
-                            <input type="text" pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)" inputmode="numeric"
-                                   data-target="#birthdate" class="form-control datetimepicker-input" id="birthdate" name="bdate"
-                                   placeholder="es. 01/12/1949" maxlength="10">
-                            <div class="input-group-append" data-target="#birthdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <small id="birthdateHelp" class="form-text text-muted">gg/mm/aaaa</small>
+            <div class="container" id="personalDataSummary" hidden>
+                <h3 id="greetingsHeader"></h3>
+                <div class="row">
+                    <div class="span6 mr-2">
+                        <button type="button" id="showPersonalDataBtn" class="btn btn-sm btn-primary" onclick="showPersonalData()">
+                            <i class="far fa-edit mr-2"></i>Modifica dati
+                        </button>
+                    </div>
+                    <div class="span6 mr-2">
+                        <button type="button" id="deletePersonalDataBtn" class="btn btn-sm btn-danger" onclick="deletePersonalData()">
+                            <i class="far fa-trash-alt mr-2"></i>Elimina dati
+                        </button>
                     </div>
                 </div>
-                <div class="col-md-3 mb-2">
-                    <label for="validazioneLuogoNascita">a</label>
-                    <input type="text" class="form-control" id="validazioneLuogoNascita" name="bplace" placeholder="es. Catania">
-                </div>
-                <div class="col-md-2 mb-2">
-                    <label for="validazioneProvinciaNascita">Provincia</label>
-                    <input type="text" class="form-control" id="validazioneProvinciaNascita" name="bprovince" placeholder="es. CT">
-                </div>
+                <hr>
             </div>
 
-            <!-- Residenza form -->
-            <div class="form-row">
-                <div class="col-md-4 mb-2">
-                    <label for="validazioneResidenza">Residente in</label>
-                    <input type="text" class="form-control" id="validazioneResidenza" name="rplace" placeholder="es. Catania">
-                </div>
-                <div class="col-md-4 mb-2">
-                    <label for="validazioneIndirizzoResidenza">Indirizzo</label>
-                    <input type="text" class="form-control" id="validazioneIndirizzoResidenza" name="raddress" placeholder="es. Via Cavour, 8">
-                </div>
-                <div class="col-md-2 mb-2">
-                    <label for="validazioneProvinciaResidenza">Provincia</label>
-                    <input type="text" class="form-control" id="validazioneProvinciaResidenza" name="rprovince" placeholder="es. CT">
-                </div>
+            <div class="container" id="personalData">
+                <h3>Dati Anagrafici</h3>
 
-                <div class="col-md-2 mb-2">
-                    <label for="validazioneTel">Telefono</label>
-                    <input type="text" class="form-control" id="validazioneTel" name="phone_nr" placeholder="es. 01 123 456" inputmode="numeric">
-                </div>
-            </div>
-            <!--  -->
-
-
-            <!-- Domicilio -->
-            <div class="form-check mb-4">
-                <input class="form-check-input" type="checkbox" value="" id="checkboxResidenza">
-                <label class="form-check-label" for="checkboxResidenza">
-                    Domicilio uguale a residenza
-                </label>
-                <small id="checkboxResidenzaHelp" class="form-text text-muted">Seleziona per copiare dati residenza</small>
-            </div>
-
-            <div class="form-row">
-                <div class="col-md-4 mb-2">
-                    <label for="validazioneDomicilio">Domiciliato in</label>
-                    <input type="text" class="form-control" id="validazioneDomicilio" name="dplace">
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="validazioneIndirizzoDomicilio">Indirizzo</label>
-                    <input type="text" class="form-control" id="validazioneIndirizzoDomicilio" name="daddress">
-                </div>
-                <div class="col-md-2 mb-2">
-                    <label for="validazioneProvinciaDomicilio">Provincia</label>
-                    <input type="text" class="form-control" id="validazioneProvinciaDomicilio" name="dprovince">
-                </div>
-            </div>
-            <!-- -->
-
-            <!-- Documento -->
-            <div class="form-row">
-                <div class="col-md-3 mb-2">
-                    <label for="validazioneTipoDocumento">Idenfitificato a mezzo</label>
-                    <select class="form-control" id="validazioneTipoDocumento" name="document_type">
-                        <option>Carta d'identità</option>
-                        <option>Patente di guida</option>
-                        <option>Passaporto</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3 mb-2">
-                    <label for="validazioneNrDoc">nr.</label>
-                    <input type="text" class="form-control" id="validazioneNrDoc" name="document_nr" placeholder="es. AB012345">
-                </div>
-
-                <div class="col-md-3 mb-2">
-                    <label for="validazioneEnteRilascio">Rilasciato da</label>
-                    <input type="text" class="form-control" id="validazioneEnteRilascio" name="document_released_by" placeholder="es. Prefettura">
-                </div>
-
-                <div class="col-md-3 mb-2">
-                    <div class="form-group">
-                        <label class="control-label">In data</label>
-                        <div class="input-group date" data-target-input="nearest">
-                            <label for="id_release_date"></label>
-                            <input type="text" pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)" inputmode="numeric"
-                                   data-target="#id_release_date" class="form-control datetimepicker-input" id="id_release_date" name="doc_released_date"
-                                   placeholder="es. 01/01/2010" maxlength="10">
-                            <div class="input-group-append" data-target="#id_release_date" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-2">
+                        <label for="name">Il sottoscritto</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="es. Mario Rossi" autofocus>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group">
+                            <label class="control-label">Nato il</label>
+                            <div class="input-group date" data-target-input="nearest">
+                                <label for="birthdate"></label>
+                                <input type="text" pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)" inputmode="numeric"
+                                       data-target="#birthdate" class="form-control datetimepicker-input" id="birthdate" name="bdate"
+                                       placeholder="es. 01/12/1949" maxlength="10">
+                                <div class="input-group-append" data-target="#birthdate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
                             </div>
+                            <small id="birthdateHelp" class="form-text text-muted">gg/mm/aaaa</small>
                         </div>
-                        <small id="docReleaseDateHelp" class="form-text text-muted">gg/mm/aaaa</small>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="bplace">a</label>
+                        <input type="text" class="form-control" id="bplace" name="bplace" placeholder="es. Catania">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="bprovince">Provincia</label>
+                        <input type="text" class="form-control" id="bprovince" name="bprovince" placeholder="es. CT">
                     </div>
                 </div>
+
+                <!-- Residenza form -->
+                <div class="form-row">
+                    <div class="col-md-4 mb-2">
+                        <label for="rplace">Residente in</label>
+                        <input type="text" class="form-control" id="rplace" name="rplace" placeholder="es. Catania">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="raddress">Indirizzo</label>
+                        <input type="text" class="form-control" id="raddress" name="raddress" placeholder="es. Via Cavour, 8">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="rprovince">Provincia</label>
+                        <input type="text" class="form-control" id="rprovince" name="rprovince" placeholder="es. CT">
+                    </div>
+
+                    <div class="col-md-2 mb-2">
+                        <label for="phone_nr">Telefono</label>
+                        <input type="text" class="form-control" id="phone_nr" name="phone_nr" placeholder="es. 01 123 456" inputmode="numeric">
+                    </div>
+                </div>
+                <!--  -->
+
+
+                <!-- Domicilio -->
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" value="" id="checkboxResidenza">
+                    <label class="form-check-label" for="checkboxResidenza">
+                        Domicilio uguale a residenza
+                    </label>
+                    <small id="checkboxResidenzaHelp" class="form-text text-muted">Seleziona per copiare dati residenza</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-4 mb-2">
+                        <label for="dplace">Domiciliato in</label>
+                        <input type="text" class="form-control" id="dplace" name="dplace">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="daddress">Indirizzo</label>
+                        <input type="text" class="form-control" id="daddress" name="daddress">
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="dprovince">Provincia</label>
+                        <input type="text" class="form-control" id="dprovince" name="dprovince">
+                    </div>
+                </div>
+                <!-- -->
+
+                <!-- Documento -->
+                <div class="form-row">
+                    <div class="col-md-3 mb-2">
+                        <label for="document_type">Idenfitificato a mezzo</label>
+                        <select class="form-control" id="document_type" name="document_type">
+                            <option>Carta d'identità</option>
+                            <option>Patente di guida</option>
+                            <option>Passaporto</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 mb-2">
+                        <label for="document_nr">nr.</label>
+                        <input type="text" class="form-control" id="document_nr" name="document_nr" placeholder="es. AB012345">
+                    </div>
+
+                    <div class="col-md-3 mb-2">
+                        <label for="document_released_by">Rilasciato da</label>
+                        <input type="text" class="form-control" id="document_released_by" name="document_released_by" placeholder="es. Prefettura">
+                    </div>
+
+                    <div class="col-md-3 mb-2">
+                        <div class="form-group">
+                            <label class="control-label">In data</label>
+                            <div class="input-group date" data-target-input="nearest">
+                                <label for="id_release_date"></label>
+                                <input type="text" pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)" inputmode="numeric"
+                                       data-target="#id_release_date" class="form-control datetimepicker-input" id="docReleaseDate" name="doc_released_date"
+                                       placeholder="es. 01/01/2010" maxlength="10">
+                                <div class="input-group-append" data-target="#id_release_date" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                            <small id="docReleaseDateHelp" class="form-text text-muted">gg/mm/aaaa</small>
+                        </div>
+                    </div>
+                </div>
+                <hr>
             </div>
 
-            <hr>
-            <h3>Dettagli dichiarazione</h3>
+            <div class="container" id="declarationDetails">
+                <h3>Dettagli dichiarazione</h3>
 
-            <div class="form-row">
-                <div class="col-md-6 mb-2">
-                    <label for="validazioneOrigineSpostamento">Orgine spostamento</label>
-                    <input type="text" class="form-control" id="validazioneOrigineSpostamento" name="out_origin" placeholder="es. Via Leopardi, 3, Catania">
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="validazioneDestinazioneSpostamento">Destinazione</label>
-                    <input type="text" class="form-control" id="validazioneDestinazioneSpostamento" name="out_destination" placeholder="es. Via Roma, 1, Siracusa">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-md-4 mb-2">
-                    <label for="validazioneRegioneOrigine">Regione di partenza</label>
-                    <select class="form-control" id="validazioneRegioneOrigine" name="region_from">
-                        <option></option>
-                        {% for region in regions %}
-                            <option value="{{ region }}">{{ region }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <label for="validazioneRegioneDestinazione">Regione di destinazione</label>
-                    <select class="form-control" id="validazioneRegioneDestinazione" name="region_to">
-                        <option></option>
-                        {% for region in regions %}
-                            <option value="{{ region }}">{{ region }}</option>
-                        {% endfor %}
-                    </select>
+                <div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <label for="out_origin">Orgine spostamento</label>
+                        <input type="text" class="form-control" id="out_origin" name="out_origin" placeholder="es. Via Leopardi, 3, Catania">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="out_destination">Destinazione</label>
+                        <input type="text" class="form-control" id="out_destination" name="out_destination" placeholder="es. Via Roma, 1, Siracusa">
+                    </div>
                 </div>
 
-                <div class="col-md-4 mb-2">
-                    <label for="tipoProvvedimento">Tipo di provvedimento</label>
-                    <input type="text" class="form-control" id="tipoProvvedimento" name="provvedimento_type">
-                </div>
-            </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-2">
+                        <label for="region_from">Regione di partenza</label>
+                        <select class="form-control" id="region_from" name="region_from">
+                            <option></option>
+                            {% for region in regions %}
+                                <option value="{{ region }}">{{ region }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="region_to">Regione di destinazione</label>
+                        <select class="form-control" id="region_to" name="region_to">
+                            <option></option>
+                            {% for region in regions %}
+                                <option value="{{ region }}">{{ region }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-            <div class="form-row">
-                <div class="col-md-12 mb-2">
-                    <label for="validazioneMotivazioneSpostamento">Spostamento determinato da</label>
-                    <select class="form-control" id="validazioneMotivazioneSpostamento" name="out_motivation">
-                        <option value="0">comprovate esigenze lavorative</option>
-                        <option value="1">assoluta urgenza (per trasferimenti in comune diverso)</option>
-                        <option value="2">situazione di necessità</option>
-                        <option value="3">motivi di salute</option>
-                    </select>
+                    <div class="col-md-4 mb-2">
+                        <label for="provvedimento_type">Tipo di provvedimento</label>
+                        <input type="text" class="form-control" id="provvedimento_type" name="provvedimento_type">
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-row">
-                <div class="col-md-12 mb-2">
-                    <div class="form-group">
-                        <label for="dichiarazione">A riguardo dichiara che:</label>
-                        <textarea class="form-control" id="dichiarazione" name="declaration" rows="3"></textarea>
+                <div class="form-row">
+                    <div class="col-md-12 mb-2">
+                        <label for="out_motivation">Spostamento determinato da</label>
+                        <select class="form-control" id="out_motivation" name="out_motivation">
+                            <option value="0">comprovate esigenze lavorative</option>
+                            <option value="1">assoluta urgenza (per trasferimenti in comune diverso)</option>
+                            <option value="2">situazione di necessità</option>
+                            <option value="3">motivi di salute</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-12 mb-2">
+                        <div class="form-group">
+                            <label for="declaration">A riguardo dichiara che:</label>
+                            <textarea class="form-control" id="declaration" name="declaration" rows="3"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,14 +236,14 @@
             <div class="row">
                 <div class="span6 mr-2">
                     <form class="form-inline" id="editPDFForm" method="post">
-                        <button class="btn btn-danger" id="editPDFButton" type="submit" hidden onclick="toggleGenerateSeeButtons()">
-                            <i class="far fa-edit mr-2"></i>Modifica
+                        <button class="btn btn-sm btn-danger" id="editPDFButton" type="submit" hidden onclick="toggleEditFormButton()">
+                            <i class="far fa-trash-alt mr-2"></i>Elimina PDF
                         </button>
                     </form>
                 </div>
                 <div class="span6">
                     <form class="form-inline" id="seePDFForm" method="get" action="">
-                        <button class="btn btn-success" id="seePDFButton" type="submit" hidden onclick="toggleGenerateSeeButtons()">
+                        <button class="btn btn-sm btn-success" id="seePDFButton" type="submit" hidden onclick="toggleVisualizePDFButton()">
                             <i class="far fa-file-pdf mr-2"></i>Visualizza PDF
                         </button>
                     </form>
