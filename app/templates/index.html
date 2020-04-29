@@ -158,7 +158,7 @@
                 <div class="col-md-4 mb-2">
                     <label for="validazioneRegioneOrigine">Regione di partenza</label>
                     <select class="form-control" id="validazioneRegioneOrigine" name="region_from">
-                    <option></option>
+                        <option></option>
                         {% for region in regions %}
                             <option value="{{ region }}">{{ region }}</option>
                         {% endfor %}
@@ -208,7 +208,11 @@
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 <span class="sr-only">Loading...</span>
             </button>
-
+        </form>
+        <form id="seePDFForm" method="get" action="">
+            <button class="btn btn-primary" id="seePDFButton" type="submit" hidden>
+                <i class="far fa-file-pdf mr-2"></i>Visualizza PDF
+            </button>
         </form>
     </main>
 
