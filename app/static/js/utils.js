@@ -51,6 +51,7 @@ function toggleGenEditButtons() {
 function toggleVisualizePDFButton() {
     toggleGenEditButtons();
     showPersonalDataSummary();
+    $("#editPDFForm").removeAttr("action")
     location.reload();
 }
 
