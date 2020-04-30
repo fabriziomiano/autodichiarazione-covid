@@ -43,7 +43,7 @@ def generate_pdf():
 
 
 @frontend.route('/download/<filename>')
-def download_and_remove(filename):
+def download(filename):
     """
     Serve file with filename in UPLOAD_FOLDER before deleting it
     :param filename: str <uuid>.pdf
@@ -52,12 +52,18 @@ def download_and_remove(filename):
         current_app.root_path, current_app.config['UPLOAD_FOLDER'], filename)
 
     def generate():
-        with open(path, "rb") as f:
-            yield from f
-        os.remove(path)
+        try:
+            with open(path, "rb") as f:
+                yield from f
+            os.remove(path)
+        except FileNotFoundError:
+            with open(current_app.config["PDF_TEMPLATE_PATH"], "rb") as f:
+                yield from f
 
     r = current_app.response_class(generate(), mimetype='application/pdf')
-    r.headers.set('Content-Disposition', 'attachment', filename=PDF_OUT_FILENAME)
+    r.headers.set(
+        'Content-Disposition', 'attachment', filename=PDF_OUT_FILENAME
+    )
     return r
 
 
@@ -65,7 +71,10 @@ def download_and_remove(filename):
 def remove_pdf(filename):
     try:
         path = os.path.join(
-            current_app.root_path, current_app.config['UPLOAD_FOLDER'], filename)
+            current_app.root_path,
+            current_app.config['UPLOAD_FOLDER'],
+            filename
+        )
         os.remove(path)
         response = "OK"
     except Exception as e:
