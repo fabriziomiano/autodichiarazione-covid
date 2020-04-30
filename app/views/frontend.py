@@ -50,6 +50,7 @@ def download(filename):
     """
     path = os.path.join(
         current_app.root_path, current_app.config['UPLOAD_FOLDER'], filename)
+    path_default = current_app.config["PDF_TEMPLATE_PATH"]
 
     def generate():
         try:
@@ -57,7 +58,7 @@ def download(filename):
                 yield from f
             os.remove(path)
         except FileNotFoundError:
-            with open(current_app.config["PDF_TEMPLATE_PATH"], "rb") as f:
+            with open(path_default, "rb") as f:
                 yield from f
 
     r = current_app.response_class(generate(), mimetype='application/pdf')
