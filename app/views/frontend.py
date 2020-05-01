@@ -51,6 +51,7 @@ def generate_pdf():
         'pdftk ' + tmp_out_pdf_path + ' fill_form ' + fdf_tmp +
         ' output ' + out_pdf_path + ' flatten'
     )
+    os.remove(tmp_out_pdf_path)
     return pdf_filename
 
 
