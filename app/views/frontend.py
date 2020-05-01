@@ -49,7 +49,7 @@ def generate_pdf():
     os.system('pdftk ' + tmp_out_pdf_path + ' generate_fdf output ' + fdf_tmp)
     os.system(
         'pdftk ' + tmp_out_pdf_path + ' fill_form ' + fdf_tmp +
-        ' output ' + out_pdf_path
+        ' output ' + out_pdf_path + ' flatten'
     )
     return pdf_filename
 
