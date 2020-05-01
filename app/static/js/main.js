@@ -6,7 +6,7 @@ $(function () {
 });
 
 $(function () {
-    $('#id_release_date').datetimepicker({
+    $('#docReleaseDate').datetimepicker({
         format: 'L',
         locale: 'it'
     })
