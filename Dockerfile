@@ -22,4 +22,4 @@ USER user
 # Run the app.  CMD is required to run on Heroku
 # $PORT is set by Heroku
 #ENV PORT 5000 # only for local dev
-CMD gunicorn - -bind 0.0.0.0:$PORT wsgi:app
+CMD gunicorn --bind 0.0.0.0:$PORT wsgi:app
