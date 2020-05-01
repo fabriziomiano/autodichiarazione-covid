@@ -29,15 +29,27 @@ def generate_pdf():
     uu_id = uuid.uuid4().hex
     current_app.logger.debug(uu_id)
     current_app.logger.debug(request.form)
+    tmp_pdf_filename = "{}_tmp.pdf".format(uu_id)
     pdf_filename = "{}.pdf".format(uu_id)
+    tmp_out_pdf_path = os.path.join(
+        current_app.config["UPLOAD_FOLDER"], tmp_pdf_filename
+    )
     out_pdf_path = os.path.join(
         current_app.config["UPLOAD_FOLDER"], pdf_filename
     )
     fill_template_from_input(
         request.form,
         current_app.config["PDF_TEMPLATE_PATH"],
-        out_pdf_path,
+        tmp_out_pdf_path,
         INPUT_FORM_MAP
+    )
+    fdf_tmp = os.path.join(
+        current_app.config["UPLOAD_FOLDER"], 'tmp.fdf'
+    )
+    os.system('pdftk ' + tmp_out_pdf_path + ' generate_fdf output ' + fdf_tmp)
+    os.system(
+        'pdftk ' + tmp_out_pdf_path + ' fill_form ' + fdf_tmp +
+        ' output ' + out_pdf_path
     )
     return pdf_filename
 
