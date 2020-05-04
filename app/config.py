@@ -41,10 +41,10 @@ INPUT_FORM_MAP = {
     "region_from": "Testo3",
     "region_to": "Testo4",
     "provvedimento_type": {
-        "is_multiple": {
-            "Testo5": 28,
-            "Testo6": 45
-        }
+        "is_multiple": [
+            ("Testo5", 43),
+            ("Testo6", 51)
+        ]
     },
     "out_motivation": {
         "is_xor_checklist": {
@@ -54,9 +54,13 @@ INPUT_FORM_MAP = {
         }
     },
     "declaration": {
-        "is_multiple": {
-            "A  questo  riguardo  dichiara che 1": 53,
-            "A  questo  riguardo  dichiara che 2": 80
-        }
+        "is_multiple": [
+            ("Testo7", 70),
+            ("Testo8", 100),
+            ("Testo9", 100),
+            ("Testo10", 100),
+            ("Testo11", 100),
+            ("Testo12", 100)
+        ]
     }
 }

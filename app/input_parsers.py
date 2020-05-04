@@ -8,7 +8,7 @@ def wrap_text_in_form(s, sizes):
     for size in sizes[:-1]:
         parts = textwrap.wrap(tmp_s, width=size) or [""]
         outs.append(parts[0])
-        tmp_s = s[len(parts[0]):]
+        tmp_s = tmp_s[len(parts[0]):]
     outs.append(" ".join(parts[1:]))
     return outs
     
@@ -30,10 +30,10 @@ def parse_date(k, value, input_map):
 
 
 def parse_multiple(k, value, input_map):
-    fields = sorted(input_map[k]["is_multiple"].items(), key=lambda x: x[0])
-    sizes = [x[1] for x in fields]
+    fields = [x[0] for x in input_map[k]["is_multiple"]]
+    sizes = [x[1] for x in input_map[k]["is_multiple"]]
     parts = wrap_text_in_form(value, sizes)
-    return {k: p for (k, s), p in zip(fields, parts)}
+    return {k: p for k, p in zip(fields, parts)}
 
 
 def parse_xor_checklist(k, value, input_map):
