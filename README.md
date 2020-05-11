@@ -23,7 +23,7 @@ eseguire il build dell'immagine dell'app
 
 ```docker build --tag autodichiarazione:latest .```
 
-e per tirarae su il container
+e per tirare su il container
 
 ```docker run -it -p $PORT:$PORT autodichiarazione:latest```
 
